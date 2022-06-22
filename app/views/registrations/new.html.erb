@@ -1,0 +1,47 @@
+<h1>Sign Up</h1>
+
+<% if false %>
+
+    <%= @user %>
+
+    <%= form_tag do %>
+    Form contents
+    <% end %>
+
+    <%= form_tag("/sign_up", method: "post") do %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Search") %>
+    <% end %>
+
+<% end %>
+
+<%= form_for @user, url: sign_up_path do |f| %>
+
+    <% if @user.errors.any? %>
+        <div class="alert alert-danger">
+            <% @user.errors.full_messages.each do |message| %>
+                <div><%= message %></div>
+            <% end %>
+        </div>
+    <% end %>
+    <div class="mt-4 mb-3">
+        <%= f.label :email %>
+        <%= f.text_field :email, placeholder: "name@example.com", class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.label :password %>
+        <%= f.password_field :password, placeholder: :password, class: "form-control"  %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, placeholder: :password_confirmation, class: "form-control"  %>
+    </div>
+
+    <div>
+        <%= f.submit "Sign Up" %>
+    </div>
+
+<% end %>
